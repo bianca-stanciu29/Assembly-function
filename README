@@ -1,0 +1,45 @@
+Stanciu Bianca-Andreea, 325CC
+
+-----------------------------------------------------Tema2-Strings------------------------------------------------------
+
+Task1: One Time Pad
+    -pentru a efectua operatia XOR, am folosit o structura repetitiva pana cand contorul va depasi length, in care am
+extras caracter cu caracter si am realizat XOR dinte caracterul din plaint text(ebx = [esi+eax]) si caracterul
+corespunzator din key([edi+eax]), punand rezultatul in ciphertext(edx)
+
+Task2: Caesar Cipher
+    -am parcurs sirul caracter cu caracter pana cand contorul a depasit lungimea, am testat in ce interval se afla
+caracterul. Daca depaseste valoarea 122 atunci nu se cripteaza, fiind valabil si daca este mai mic decat 65(A).
+Daca se incadreaza in intervalul 65-122, compararea se va face in functie de 90 si 97,portiune in care se afla caractere
+si nu litere. Daca este mai mic sau egal cu 90 atunci este litera mare si se va aduna cu cheia, iar daca dupa adunare se
+depaseste valoarea 90, atunci se calculeaza restul pentru a se relua ciclul literelor mari. Daca este mai mare decat 96
+atunci este litera mica si se aduna cu cheia, comparandu-se apoi cu 122 pentru a verifica daca s-a depasit intervalul,
+iar daca s-a depasit se calculeaza restul pentru a se relua cilcul literelor mici. Dupa fiecare adunare cu cheia se va
+pune in ciphertext rezultatul.
+
+Task3: Vigenere Cipher
+    -cat timp nu se depaseste lungimea plaintext-ului, extrag caracter cu caracter, testand in ce interval se incadreaza.
+Daca este mai mic decat 122 si mai mare decat 63 atunci se testeaza daca este litera mare. Daca este litera mare, voi
+aduna litera cu caracterul din cheie, voi scadea 65 pentru ca in cheie se afla doar majuscule si testez apoi daca s-a
+depasit 90, calculand restul pentru a relua literele.Daca contorul pentru cheie depaseste lungimea cheii acesta se va
+reinitializa cu 0. Daca se afla intre 91-96 atunci se scrie direct in ciphertext, altfel daca este mai mare decat 96
+atunci este litera mica, se va aduna cu cheia, se va scadea 65 si se va testa daca se depaseste 122, calculand restul si
+reluand literele. Daca este mai mare 122 sau mai mic 63 se va scrie direct in ciphertext.
+
+Task4: StrStr
+    -cat timp nu s-a ajuns la finalul sirului haystack, respectiv needle compar primul caracter din needle cu fiecare
+caracter din haystack pana se gaseste o egalitate. Cand s-a gasit o egalitate va creste atat contorul pentru haystack,
+cat si cel pentru needle si se realizeaza compararea. Daca egalitatea se mentine pana la finalul lungimii needle, atunci
+in rezultat va fi diferenta dintre contorul pentru haystack si lungimea needle-ului. Daca egalitatea nu se mentine, se
+va reinitializa contorul pentru needle si se va compara cu primul caracter pana se ajunge la finalul haystack-ului.Daca
+nu s-a gasit, in rezultat se va pune lungimea haystack-ului + 1.
+
+Task5: Binary to Hexadecimal
+    -cat timp nu s-a ajuns la finalul sirului, testez pe ce pozitie se afla contorul pentru bit. Daca este pe pozitia 0
+si bitul este egal cu 1 atunci la rezultat adun 1, daca este pe pozitia 1 si bitul este egal cu 1 atunci adun 2, daca
+este pe pozitia 2 si bitul este 1 atunci se aduna 4 la rezultat, iar daca este pe pozitia 3 si bitul este 1 atunci adun
+8 la rezultat. Daca rezultatul este mai mic decat 10 atunci se pune direct pe stiva valoare, iar daca depaseste 10 se va
+transforma in litera scazand 10 si adunand 65, punand apoi pe stiva aceasta valoare. Daca suma aceasta ramane 0 dupa
+terminarea parcurgerii atunci lungimea sirului se imparte la 4, iar pe stiva nu se mai pune valoarea 0, insa daca este
+diferita de 0 atunci lungimea nu este multiplu de 4 si se adauga valoare pe stiva. In functie de cate valori am pus pe
+stiva, voi extrage pe rand si le voi pune in rezultatul final, inversate fata de cum le-am calculat.
